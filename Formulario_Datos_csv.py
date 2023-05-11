@@ -93,8 +93,10 @@ class Muestra_Widgets:
         button = ttk.Button(frame5, text="Guardar", command=self.guardar_datos)
         button.grid(column=0,row=0)
         ttk.Label(frame5, text="                    ").grid(column= 1, row= 0)
-        button2 = ttk.Button(frame5, text="Cancelar",command=self.cerrar_ventana)
+        button2 = ttk.Button(frame5, text="Cerrar",command=self.cerrar_ventana)
         button2.grid(column=2,row=0)
+        cancelar=ttk.Button(frame5,text="Ver datos",command=self.ver_datos)
+        cancelar.grid(column=2, row=5, sticky=(W))
 
         self.raiz.mainloop()
     def guardar_datos(self):
@@ -140,6 +142,52 @@ class Muestra_Widgets:
 
     def cerrar_ventana(self):
         self.raiz.destroy()
+
+
+    def ver_datos(self):
+        ventana = Toplevel(self.raiz)
+        ventana.title("Datos almacenados")
+        
+        with open("datos.csv", mode="r") as archivo:
+            lector = csv.reader(archivo)
+
+            # Creamos la tabla utilizando un LabelFrame y Labels
+            table_frame = ttk.LabelFrame(ventana, text='Datos')
+            table_frame.pack(fill=BOTH, expand=1, padx=5, pady=5)
+
+            row_num = 0
+            for row in lector:
+                label_1 = ttk.Label(table_frame, text=row[0], width=20, borderwidth=1, relief='solid')
+                label_1.grid(row=row_num, column=0)
+                
+                label_2 = ttk.Label(table_frame, text=row[1], width=20, borderwidth=1, relief='solid')
+                label_2.grid(row=row_num, column=1)
+                
+                label_3 = ttk.Label(table_frame, text=row[2], width=20, borderwidth=1, relief='solid')
+                label_3.grid(row=row_num, column=2)
+
+                label_4 = ttk.Label(table_frame, text=row[3], width=20, borderwidth=1, relief='solid')
+                label_4.grid(row=row_num, column=3)
+                
+                label_5 = ttk.Label(table_frame, text=row[4], width=20, borderwidth=1, relief='solid')
+                label_5.grid(row=row_num, column=4)
+                
+                label_6 = ttk.Label(table_frame, text=row[5], width=20, borderwidth=1, relief='solid')
+                label_6.grid(row=row_num, column=5)
+
+                label_7 = ttk.Label(table_frame, text=row[6], width=20, borderwidth=1, relief='solid')
+                label_7.grid(row=row_num, column=6)
+                
+                label_8 = ttk.Label(table_frame, text=row[7], width=20, borderwidth=1, relief='solid')
+                label_8.grid(row=row_num, column=7)
+                
+                label_9 = ttk.Label(table_frame, text=row[8], width=20, borderwidth=1, relief='solid')
+                label_9.grid(row=row_num, column=8)
+
+                label_10 = ttk.Label(table_frame, text=row[9], width=20, borderwidth=1, relief='solid')
+                label_10.grid(row=row_num, column=9)
+
+                row_num += 1
 
 
 Muestra_Widgets()
